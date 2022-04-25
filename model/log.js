@@ -7,19 +7,12 @@ const listLog = async () => {
   } catch (error) {}
 };
 
-// const getContactById = async (contactId) => {
-//   try {
-//     const contactById = await Contacts.findById(contactId);
-//     return contactById;
-//   } catch (error) {}
-// };
-
-// const removeContact = async (contactId) => {
-//   try {
-//     const removingContact = await Contacts.findByIdAndRemove(contactId);
-//     return removingContact;
-//   } catch (error) {}
-// };
+const removeLog = async (logId) => {
+  try {
+    const removingLog = await Log.findByIdAndRemove(logId);
+    return removingLog;
+  } catch (error) {}
+};
 
 const addLog = async (service_URL, ping_timestamp, HTTP_status) => {
   try {
@@ -32,9 +25,6 @@ const addLog = async (service_URL, ping_timestamp, HTTP_status) => {
 
 module.exports = {
   listLog,
-  // getContactById,
-  // removeContact,
+  removeLog,
   addLog,
-  // updateContact,
-  // updateStatusContact,
 };

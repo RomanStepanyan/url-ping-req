@@ -1,34 +1,19 @@
 const express = require("express");
 const router = express.Router();
-// const validate = require("./validation.js");
 
-const { listLog, addLog } = require("../../model/log.js");
+const { listLog, addLog, removeLog } = require("../../model/log.js");
 
 router.get("/", async (req, res, next) => {
   try {
     const data = await listLog();
     res.status(200);
     res.json({ data });
+    console.log(data);
+    return data;
   } catch (error) {
     next(error);
   }
 });
-
-// router.get("/:contactId", async (req, res, next) => {
-//   try {
-//     const data = await getContactById(req.params.contactId);
-//     if (!data) {
-//       res.status(404);
-//       res.json({
-//         message: `Contact with id: ${req.params.contactId} is not found`,
-//       });
-//     }
-//     res.status(200);
-//     res.json({ data });
-//   } catch (error) {
-//     next(error);
-//   }
-// });
 
 router.post("/", async (req, res, next) => {
   try {
@@ -40,57 +25,20 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-// router.delete("/:contactId", async (req, res, next) => {
-//   try {
-//     const removedContact = await removeContact(req.params.contactId);
-//     if (!removedContact) {
-//       res.status(404);
-//       res.json({
-//         message: `Contact with id: ${req.params.contactId} is not found`,
-//       });
-//     }
-//     res.status(200);
-//     res.json({ "contact deleted": removedContact });
-//   } catch (error) {
-//     next({ message: "Not found" });
-//   }
-// });
-
-// router.patch("/:contactId", validate.updateContact, async (req, res, next) => {
-//   try {
-//     const data = await updateContact(req.params.contactId, req.body);
-//     if (!data) {
-//       res.status(404);
-//       res.json({
-//         message: `Contact with id: ${req.params.contactId} is not found`,
-//       });
-//     }
-//     res.status(200);
-//     res.json({ "contact updated": data });
-//   } catch (error) {
-//     next({ message: "Not found" });
-//   }
-// });
-
-// router.patch(
-//   "/:contactId/favorite",
-//   validate.updateContactStatus,
-//   async (req, res, next) => {
-//     try {
-//       const data = await updateStatusContact(req.params.contactId, req.body);
-//       if (!data) {
-//         res.status(400);
-//         res.json({
-//           message: `Contact with id: ${req.params.contactId} is not found`,
-//         });
-//       }
-
-//       res.status(200);
-//       res.json({ "contact updated": data });
-//     } catch (error) {
-//       next({ message: "Not found" });
-//     }
-//   }
-// );
+router.delete("/:logId", async (req, res, next) => {
+  try {
+    const removedLog = await removeLog(req.params.logId);
+    if (!removedLog) {
+      res.status(404);
+      res.json({
+        message: `Contact with id: ${req.params.logId} is not found`,
+      });
+    }
+    res.status(200);
+    res.json({ "log deleted": removedLog });
+  } catch (error) {
+    next({ message: "Not found" });
+  }
+});
 
 module.exports = router;

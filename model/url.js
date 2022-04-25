@@ -7,19 +7,12 @@ const listURL = async () => {
   } catch (error) {}
 };
 
-// const getContactById = async (contactId) => {
-//   try {
-//     const contactById = await Contacts.findById(contactId);
-//     return contactById;
-//   } catch (error) {}
-// };
-
-// const removeContact = async (contactId) => {
-//   try {
-//     const removingContact = await Contacts.findByIdAndRemove(contactId);
-//     return removingContact;
-//   } catch (error) {}
-// };
+const removeUrl = async (urlId) => {
+  try {
+    const removingUrl = await URL.findByIdAndRemove(urlId);
+    return removingUrl;
+  } catch (error) {}
+};
 
 const addURL = async (body) => {
   console.log(body);
@@ -32,22 +25,8 @@ const addURL = async (body) => {
   } catch (error) {}
 };
 
-// const updateContact = async (contactId, body) => {
-//   try {
-//     const { name, email, phone } = body;
-//     const updatedContact = await Contacts.findByIdAndUpdate(contactId, {
-//       $set: { name, email, phone },
-//     });
-//     return updatedContact.id;
-//   } catch (error) {}
-// };
-
 module.exports = {
   listURL,
-  // listEmail,
-  // getContactById,
-  // removeContact,
+  removeUrl,
   addURL,
-  // updateContact,
-  // updateStatusContact,
 };

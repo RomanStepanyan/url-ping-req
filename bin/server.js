@@ -4,7 +4,7 @@ const cors = require("cors");
 
 require("dotenv").config();
 
-const PORT = process.env.PORT || 3030;
+const PORT = 3030;
 
 const app = express();
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
@@ -13,14 +13,15 @@ const urlRouter = require("../routes/api/urlApi");
 const emailRouter = require("../routes/api/emaiApi");
 const intervalRouter = require("../routes/api/intervalApi");
 const logRouter = require("../routes/api/logApi");
+const pingRouter = require("../routes/api/pingApi");
 
 const { connectMongo } = require("../db/connections");
-// const { errorHandler } = require("./src/helpers/apiHelpers");
 
 app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
 
+app.use("/api/db-url_ping/url-list", pingRouter);
 app.use("/api/db-url_ping/url-list", urlRouter);
 app.use("/api/db-url_ping/email", emailRouter);
 app.use("/api/db-url_ping/interval", intervalRouter);

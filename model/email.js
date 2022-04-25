@@ -8,20 +8,6 @@ const listEmail = async () => {
   } catch (error) {}
 };
 
-// const getContactById = async (contactId) => {
-//   try {
-//     const contactById = await Contacts.findById(contactId);
-//     return contactById;
-//   } catch (error) {}
-// };
-
-// const removeContact = async (contactId) => {
-//   try {
-//     const removingContact = await Contacts.findByIdAndRemove(contactId);
-//     return removingContact;
-//   } catch (error) {}
-// };
-
 const addEmail = async (body) => {
   console.log(body);
   const { email } = body;
@@ -33,21 +19,18 @@ const addEmail = async (body) => {
   } catch (error) {}
 };
 
-// const updateContact = async (contactId, body) => {
-//   try {
-//     const { name, email, phone } = body;
-//     const updatedContact = await Contacts.findByIdAndUpdate(contactId, {
-//       $set: { name, email, phone },
-//     });
-//     return updatedContact.id;
-//   } catch (error) {}
-// };
+const updateEmail = async (body) => {
+  try {
+    const { email } = body;
+    const onEmailUpdate = await Email.findOneAndUpdate({
+      $set: { email },
+    });
+    return onEmailUpdate;
+  } catch (error) {}
+};
 
 module.exports = {
   listEmail,
-  // getContactById,
-  // removeContact,
   addEmail,
-  // updateContact,
-  // updateStatusContact,
+  updateEmail,
 };

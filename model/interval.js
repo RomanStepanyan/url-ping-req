@@ -7,20 +7,6 @@ const getInterval = async () => {
   } catch (error) {}
 };
 
-// const getContactById = async (contactId) => {
-//   try {
-//     const contactById = await Contacts.findById(contactId);
-//     return contactById;
-//   } catch (error) {}
-// };
-
-// const removeContact = async (contactId) => {
-//   try {
-//     const removingContact = await Contacts.findByIdAndRemove(contactId);
-//     return removingContact;
-//   } catch (error) {}
-// };
-
 const addInterval = async (body) => {
   console.log(body);
   const { interval } = body;
@@ -32,10 +18,10 @@ const addInterval = async (body) => {
   } catch (error) {}
 };
 
-const updateInterval = async (intervalId, body) => {
+const updateInterval = async (body) => {
   try {
     const { interval } = body;
-    const updatedInterval = await Interval.findByIdAndUpdate(intervalId, {
+    const updatedInterval = await Interval.findOneAndUpdate({
       $set: { interval },
     });
     return updatedInterval;
@@ -44,9 +30,6 @@ const updateInterval = async (intervalId, body) => {
 
 module.exports = {
   getInterval,
-  // getContactById,
-  // removeContact,
   addInterval,
   updateInterval,
-  // updateStatusContact,
 };

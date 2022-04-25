@@ -1,0 +1,26 @@
+.contact {
+  width: fit-content;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 1px rgba(88, 90, 90, 0.2) solid;
+  border-radius: 5px;
+  list-style: none;
+}
+
+.contact:hover {
+  background-color: beige;
+}
+.contact_span {
+  margin-right: 10px;
+}
+
+.contactListWrapper {
+  margin: 70px auto;
+  max-width: max-content;
+}
+.title {
+  text-align: center;
+}
+.contactList {
+  padding-left: 0;
+}

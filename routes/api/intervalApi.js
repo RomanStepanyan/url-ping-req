@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-// const validate = require("./validation.js");
 
 const {
   getInterval,
@@ -18,22 +17,6 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// router.get("/:contactId", async (req, res, next) => {
-//   try {
-//     const data = await getContactById(req.params.contactId);
-//     if (!data) {
-//       res.status(404);
-//       res.json({
-//         message: `Contact with id: ${req.params.contactId} is not found`,
-//       });
-//     }
-//     res.status(200);
-//     res.json({ data });
-//   } catch (error) {
-//     next(error);
-//   }
-// });
-
 router.post("/", async (req, res, next) => {
   try {
     const newInterval = await addInterval(req.body);
@@ -44,29 +27,13 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-// router.delete("/:contactId", async (req, res, next) => {
-//   try {
-//     const removedContact = await removeContact(req.params.contactId);
-//     if (!removedContact) {
-//       res.status(404);
-//       res.json({
-//         message: `Contact with id: ${req.params.contactId} is not found`,
-//       });
-//     }
-//     res.status(200);
-//     res.json({ "contact deleted": removedContact });
-//   } catch (error) {
-//     next({ message: "Not found" });
-//   }
-// });
-
-router.patch("/:intervalId", async (req, res, next) => {
+router.patch("/", async (req, res, next) => {
   try {
-    const data = await updateInterval(req.params.intervalId, req.body);
+    const data = await updateInterval(req.body);
     if (!data) {
       res.status(404);
       res.json({
-        message: `Interval with id: ${req.params.contactId} is not found`,
+        message: `Interval is not found`,
       });
     }
     res.status(200);
@@ -75,26 +42,5 @@ router.patch("/:intervalId", async (req, res, next) => {
     next({ message: "Interval not found" });
   }
 });
-
-// router.patch(
-//   "/:contactId/favorite",
-//   validate.updateContactStatus,
-//   async (req, res, next) => {
-//     try {
-//       const data = await updateStatusContact(req.params.contactId, req.body);
-//       if (!data) {
-//         res.status(400);
-//         res.json({
-//           message: `Contact with id: ${req.params.contactId} is not found`,
-//         });
-//       }
-
-//       res.status(200);
-//       res.json({ "contact updated": data });
-//     } catch (error) {
-//       next({ message: "Not found" });
-//     }
-//   }
-// );
 
 module.exports = router;

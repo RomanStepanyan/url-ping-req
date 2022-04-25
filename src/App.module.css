@@ -1,0 +1,9 @@
+.container {
+  width: 500px;
+  margin: 130px auto;
+  background-color: rgba(40, 44, 52, 0.1);
+}
+
+.title {
+  text-align: center;
+}
